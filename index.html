@@ -1,172 +1,931 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Nishant Sachdeva | QA Lead</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nishant Sachdeva – QA Lead</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0a0e17;
+      --surface: #111827;
+      --border: #1e2d45;
+      --accent: #00d4aa;
+      --accent2: #3b82f6;
+      --text: #e8edf5;
+      --muted: #6b7a99;
+      --gold: #f59e0b;
+    }
 
-<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-body{
-font-family:Arial;
-margin:0;
-background:#f4f4f4;
-color:#333;
-}
+    html { scroll-behavior: smooth; }
 
-header{
-background:#1f2937;
-color:white;
-padding:50px;
-text-align:center;
-}
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
 
-header img{
-width:140px;
-border-radius:50%;
-margin-bottom:15px;
-}
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
 
-section{
-background:white;
-max-width:900px;
-margin:30px auto;
-padding:35px;
-border-radius:10px;
-box-shadow:0 2px 8px rgba(0,0,0,0.08);
-}
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(10, 14, 23, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
 
-h2{
-color:#1f2937;
-}
+    .nav-logo {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
 
-.skills span{
-background:#e5e7eb;
-padding:8px 14px;
-margin:5px;
-display:inline-block;
-border-radius:6px;
-font-size:14px;
-}
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
 
-.job{
-margin-bottom:25px;
-}
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
 
-footer{
-text-align:center;
-padding:25px;
-color:#666;
-}
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 6rem 4rem;
+      gap: 4rem;
+      overflow: hidden;
+    }
 
-a{
-color:#2563eb;
-text-decoration:none;
-}
+    /* animated grid background */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,170,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,170,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridShift 20s linear infinite;
+    }
+    @keyframes gridShift {
+      from { background-position: 0 0; }
+      to { background-position: 60px 60px; }
+    }
 
-</style>
+    .hero-text { position: relative; z-index: 2; }
+
+    .hero-tag {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      background: rgba(0,212,170,0.08);
+      border: 1px solid rgba(0,212,170,0.25);
+      padding: 0.35rem 0.9rem;
+      border-radius: 2rem;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--accent2);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .hero-desc strong { color: var(--text); font-weight: 600; }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0a0e17;
+      border: none;
+      padding: 0.85rem 2rem;
+      border-radius: 0.4rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,212,170,0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 0.85rem 2rem;
+      border-radius: 0.4rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── PHOTO CARD ── */
+    .hero-photo-wrap {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .photo-card {
+      position: relative;
+      width: 320px;
+      height: 380px;
+    }
+
+    /* decorative frame */
+    .photo-card::before {
+      content: '';
+      position: absolute;
+      top: -12px; left: -12px;
+      width: 100%; height: 100%;
+      border: 2px solid var(--accent);
+      border-radius: 1.2rem;
+      opacity: 0.4;
+    }
+
+    .photo-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, rgba(0,212,170,0.15), rgba(59,130,246,0.1));
+      z-index: 1;
+    }
+
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      border-radius: 1rem;
+      background: linear-gradient(145deg, #111827, #1a2540);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .photo-placeholder::before {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(0,212,170,0.12), transparent 70%);
+      border-radius: 50%;
+      top: -40px;
+      right: -40px;
+    }
+
+    .avatar-icon {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem;
+      color: #0a0e17;
+      font-weight: 700;
+      z-index: 2;
+      position: relative;
+      box-shadow: 0 0 40px rgba(0,212,170,0.3);
+    }
+
+    .photo-name-label {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      z-index: 2;
+      position: relative;
+    }
+    .photo-sub-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      z-index: 2;
+      position: relative;
+    }
+
+    .photo-upload-hint {
+      font-size: 0.72rem;
+      color: var(--muted);
+      z-index: 2;
+      position: relative;
+      text-align: center;
+      padding: 0 1.5rem;
+      line-height: 1.5;
+      margin-top: 0.5rem;
+    }
+
+    /* floating stats */
+    .stat-badge {
+      position: absolute;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.6rem;
+      padding: 0.6rem 1rem;
+      z-index: 10;
+    }
+    .stat-badge.top-right {
+      top: -1.5rem;
+      right: -2.5rem;
+    }
+    .stat-badge.bottom-left {
+      bottom: -1.5rem;
+      left: -2.5rem;
+    }
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--accent);
+    }
+    .stat-label {
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      position: relative;
+      padding: 6rem 6rem;
+      z-index: 1;
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      line-height: 1.1;
+      margin-bottom: 3rem;
+    }
+
+    /* ── SKILLS SECTION ── */
+    #skills { background: var(--surface); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 0.8rem;
+      padding: 1.8rem;
+      transition: border-color 0.25s, transform 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .skill-card:hover::before { transform: scaleX(1); }
+    .skill-card:hover { border-color: rgba(0,212,170,0.3); transform: translateY(-4px); }
+
+    .skill-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .skill-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      color: var(--text);
+    }
+
+    .skill-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* tags */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      padding: 0.25rem 0.65rem;
+      border-radius: 2rem;
+      background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.2);
+      color: var(--accent2);
+      text-transform: uppercase;
+    }
+
+    /* ── EXPERIENCE SECTION ── */
+    #experience { background: var(--bg); }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 2rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.4rem;
+      top: 0.4rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(0,212,170,0.6);
+    }
+
+    .timeline-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-role {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-company {
+      font-size: 0.9rem;
+      color: var(--accent2);
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .timeline-desc li {
+      margin-bottom: 0.4rem;
+      margin-left: 1.2rem;
+    }
+
+    /* ── TOOLS SECTION ── */
+    #tools { background: var(--surface); }
+
+    .tools-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .tool-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 0.4rem;
+      padding: 0.5rem 1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text);
+      letter-spacing: 0.05em;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .tool-pill:hover { border-color: var(--accent); color: var(--accent); }
+    .tool-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    /* ── METRICS ── */
+    #metrics { background: var(--bg); }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .metric-card {
+      border: 1px solid var(--border);
+      border-radius: 0.8rem;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(0,212,170,0.06), transparent 70%);
+    }
+
+    .metric-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3rem;
+      color: var(--accent);
+      display: block;
+    }
+
+    .metric-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--surface);
+      text-align: center;
+    }
+
+    .contact-box {
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+      font-family: 'DM Mono', monospace;
+    }
+    .contact-link:hover { color: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 6rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 7rem 2rem 4rem;
+        text-align: center;
+      }
+      .hero-photo-wrap { display: none; }
+      .hero-cta { justify-content: center; }
+      section { padding: 4rem 2rem; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { display: none; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">NS // QA Lead</span>
+  <ul class="nav-links">
+    <li><a href="#skills">Expertise</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:nishantsachdeva2406@gmail.com" class="btn-primary" style="padding:0.6rem 1.4rem; font-size:0.8rem;">Hire Me →</a>
+</nav>
 
-<img src="profile.jpg">
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <span class="hero-tag">Open to opportunities · EU / UK / USA</span>
+    <h1 class="hero-name">Nishant<br/><em>Sachdeva</em></h1>
+    <p class="hero-title">QA Lead &nbsp;·&nbsp; Quality Engineering &nbsp;·&nbsp; Test Automation</p>
+    <p class="hero-desc">
+      <strong>10+ years</strong> driving product quality in agile organisations.
+      Expert in <strong>Cypress</strong>, CI/CD integration, shift-left testing, and building
+      automation frameworks from scratch across insurance, e-commerce, telecom &amp; gaming.
+    </p>
+    <div class="hero-cta">
+      <a href="#experience" class="btn-primary">View Experience</a>
+      <a href="mailto:nishantsachdeva2406@gmail.com" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
 
-<h1>Nishant Sachdeva</h1>
+  <div class="hero-photo-wrap">
+    <div class="photo-card">
+      <!-- REPLACE the div below with: <img src="your-photo.jpg" alt="Nishant Sachdeva" style="width:100%;height:100%;object-fit:cover;border-radius:1rem;"> -->
+      <div class="photo-placeholder">
+        <div class="avatar-icon">NS</div>
+        <span class="photo-name-label">Nishant Sachdeva</span>
+        <span class="photo-sub-label">QA Lead · Paris</span>
+        <p class="photo-upload-hint">📸 Replace this block with your photo in the HTML (see comment in code)</p>
+      </div>
 
-<p>
-QA Lead | Test Automation | Cypress | CI/CD | Quality Strategy
-</p>
-
-<p>
-10+ years experience building automation frameworks and improving release quality across insurance, healthcare and e-commerce platforms.
-</p>
-
-</header>
-
-<section>
-
-<h2>About Me</h2>
-
-<p>
-QA Lead currently working at Qantev in Paris. I focus on building scalable test automation frameworks, integrating quality into CI/CD pipelines, and helping engineering teams adopt shift-left testing practices.
-</p>
-
-<p>
-I have worked across insurance, e-commerce, telecom and airline platforms delivering reliable software systems and improving release stability.
-</p>
-
+      <div class="stat-badge top-right">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Years exp.</div>
+      </div>
+      <div class="stat-badge bottom-left">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Industries</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section>
-
-<h2>Core Skills</h2>
-
-<div class="skills">
-
-<span>Test Automation</span>
-<span>Cypress</span>
-<span>Selenium</span>
-<span>API Testing</span>
-<span>Postman</span>
-<span>CI/CD</span>
-<span>Quality Strategy</span>
-<span>BDD</span>
-<span>Contract Testing</span>
-<span>Test Framework Design</span>
-
-</div>
-
+<!-- SKILLS -->
+<section id="skills">
+  <div class="reveal">
+    <p class="section-label">Core Expertise</p>
+    <h2 class="section-title">What I bring<br/>to your team</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-icon">🎯</div>
+      <h3>QA Strategy & Governance</h3>
+      <p>Defining quality KPIs, test processes, and governance frameworks. Aligning QA strategy with business goals and release reliability.</p>
+      <div class="tags">
+        <span class="tag">Strategy</span>
+        <span class="tag">Metrics</span>
+        <span class="tag">Governance</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">⚡</div>
+      <h3>Test Automation</h3>
+      <p>End-to-end automation with Cypress (UI & API). Built frameworks from scratch, integrated into CI/CD pipelines with full coverage.</p>
+      <div class="tags">
+        <span class="tag">Cypress</span>
+        <span class="tag">Selenium</span>
+        <span class="tag">CodeceptJS</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🔄</div>
+      <h3>CI/CD Integration</h3>
+      <p>Embedding automated quality gates into delivery pipelines. Enabling fast feedback loops and confident, high-frequency releases.</p>
+      <div class="tags">
+        <span class="tag">CI/CD</span>
+        <span class="tag">Pipelines</span>
+        <span class="tag">DevOps</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">↙️</div>
+      <h3>Shift-Left & Built-In Quality</h3>
+      <p>Moving quality upstream. Coaching teams on acceptance criteria, BDD with Gherkin, and preventing defects before they reach production.</p>
+      <div class="tags">
+        <span class="tag">BDD</span>
+        <span class="tag">Shift-Left</span>
+        <span class="tag">Gherkin</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🤝</div>
+      <h3>Team Leadership & Coaching</h3>
+      <p>Mentoring engineers, driving quality-first culture, and bridging engineering, product, and stakeholder expectations in agile orgs.</p>
+      <div class="tags">
+        <span class="tag">Leadership</span>
+        <span class="tag">Mentoring</span>
+        <span class="tag">Agile</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🏥</div>
+      <h3>Domain Expertise</h3>
+      <p>Deep understanding of insurance, healthcare, e-commerce, telecom, airline & gaming platforms — ensuring business-focused testing.</p>
+      <div class="tags">
+        <span class="tag">Insurance</span>
+        <span class="tag">HealthTech</span>
+        <span class="tag">SaaS</span>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section>
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="reveal">
+    <p class="section-label">Career Journey</p>
+    <h2 class="section-title">10 years of<br/>shipping quality</h2>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-meta">Sep 2024 – Present · Paris, France</div>
+      <div class="timeline-role">QA Lead</div>
+      <div class="timeline-company">Qantev · Insurance & Healthcare SaaS</div>
+      <ul class="timeline-desc">
+        <li>Defined and drove end-to-end QA strategy across product teams.</li>
+        <li>Built Cypress automation framework (UI + API) from scratch; integrated into CI/CD.</li>
+        <li>Partnered with leadership to improve release quality, defect prevention, and production stability.</li>
+        <li>Established quality metrics, reporting, and shift-left practices across engineering.</li>
+      </ul>
+    </div>
 
-<h2>Professional Experience</h2>
+    <div class="timeline-item reveal">
+      <div class="timeline-meta">Apr 2020 – Mar 2024 · Paris, France</div>
+      <div class="timeline-role">QA Engineer</div>
+      <div class="timeline-company">ManoMano · Large-scale E-Commerce</div>
+      <ul class="timeline-desc">
+        <li>UI & API automation with CodeceptJS, TestCafe, WebDriver, and Postman/Newman.</li>
+        <li>Implemented consumer-driven contract testing using PACT for service reliability.</li>
+        <li>Led quality maturity assessments and coached teams on BDD + acceptance criteria.</li>
+        <li>Integrated automated suites into CI/CD pipelines across cross-functional programs.</li>
+      </ul>
+    </div>
 
-<div class="job">
-<h3>QA Lead — Qantev (Paris)</h3>
-<p>
-Leading QA strategy and automation adoption. Built Cypress automation frameworks for UI and API testing and integrated quality validation into CI/CD pipelines.
-</p>
-</div>
+    <div class="timeline-item reveal">
+      <div class="timeline-meta">Jun 2019 – Jan 2020 · Gurgaon, India</div>
+      <div class="timeline-role">Senior Software Engineer (QA)</div>
+      <div class="timeline-company">Altran · Telecom (Samsung)</div>
+      <ul class="timeline-desc">
+        <li>Led QA for SEP Front & LEGO telecom platforms for Samsung.</li>
+        <li>Built Selenium (Java) regression automation; managed full test lifecycle.</li>
+        <li>Presented QA outcomes in client demos and sprint reviews.</li>
+      </ul>
+    </div>
 
-<div class="job">
-<h3>QA Engineer — ManoMano</h3>
-<p>
-Improved platform quality for large scale e-commerce systems through automation frameworks, contract testing (PACT), and CI/CD validation.
-</p>
-</div>
+    <div class="timeline-item reveal">
+      <div class="timeline-meta">Feb 2018 – Jun 2019 · Gurgaon, India</div>
+      <div class="timeline-role">Test Analyst</div>
+      <div class="timeline-company">Sun Life Financial · Insurance</div>
+      <ul class="timeline-desc">
+        <li>Built Selenium + Postman/Newman automation framework from scratch for insurance workflows.</li>
+        <li>Functional, integration, and regression testing for financial and insurance systems.</li>
+        <li>Developed deep domain knowledge in insurance and financial services.</li>
+      </ul>
+    </div>
 
-<div class="job">
-<h3>Senior Software Engineer — Altran</h3>
-<p>
-Led QA testing activities for telecom platforms and developed Selenium automation frameworks.
-</p>
-</div>
-
+    <div class="timeline-item reveal">
+      <div class="timeline-meta">Nov 2014 – Jan 2018 · Greater Noida, India</div>
+      <div class="timeline-role">Senior Software Test Engineer</div>
+      <div class="timeline-company">NIIT Technologies · Airline & Gaming</div>
+      <ul class="timeline-desc">
+        <li>QA for SITA (airline) and Caesars Entertainment (gaming) enterprise platforms.</li>
+        <li>API testing, cross-browser validation, and defect lifecycle management using HP QC.</li>
+      </ul>
+    </div>
+  </div>
 </section>
 
-<section>
-
-<h2>Contact</h2>
-
-<p>
-Email: nishantsachdeva2406@gmail.com
-</p>
-
-<p>
-LinkedIn:
-<a href="https://www.linkedin.com/in/nishant-sachdeva-47734197">
-linkedin.com/in/nishant-sachdeva
-</a>
-</p>
-
+<!-- TOOLS -->
+<section id="tools">
+  <div class="reveal">
+    <p class="section-label">Tech Stack</p>
+    <h2 class="section-title">Tools &amp; Technologies</h2>
+  </div>
+  <div class="tools-grid reveal">
+    <span class="tool-pill"><span class="tool-dot"></span>Cypress</span>
+    <span class="tool-pill"><span class="tool-dot"></span>Selenium (Java)</span>
+    <span class="tool-pill"><span class="tool-dot"></span>CodeceptJS</span>
+    <span class="tool-pill"><span class="tool-dot"></span>TestCafe</span>
+    <span class="tool-pill"><span class="tool-dot"></span>WebDriver</span>
+    <span class="tool-pill"><span class="tool-dot"></span>Postman / Newman</span>
+    <span class="tool-pill"><span class="tool-dot"></span>PACT (Contract Testing)</span>
+    <span class="tool-pill"><span class="tool-dot"></span>Gherkin / BDD</span>
+    <span class="tool-pill"><span class="tool-dot"></span>CI/CD Pipelines</span>
+    <span class="tool-pill"><span class="tool-dot"></span>GitHub Actions</span>
+    <span class="tool-pill"><span class="tool-dot"></span>HP Quality Center</span>
+    <span class="tool-pill"><span class="tool-dot"></span>Jira</span>
+    <span class="tool-pill"><span class="tool-dot"></span>JavaScript</span>
+    <span class="tool-pill"><span class="tool-dot"></span>Java</span>
+    <span class="tool-pill"><span class="tool-dot"></span>API Testing</span>
+    <span class="tool-pill"><span class="tool-dot"></span>Agile / Scrum</span>
+    <span class="tool-pill"><span class="tool-dot"></span>Shift-Left Testing</span>
+    <span class="tool-pill"><span class="tool-dot"></span>Test Strategy</span>
+  </div>
 </section>
 
+<!-- METRICS -->
+<section id="metrics">
+  <div class="reveal">
+    <p class="section-label">By the numbers</p>
+    <h2 class="section-title">Impact at a glance</h2>
+  </div>
+  <div class="metrics-grid">
+    <div class="metric-card reveal">
+      <span class="metric-num">10+</span>
+      <div class="metric-label">Years in Quality Engineering</div>
+    </div>
+    <div class="metric-card reveal">
+      <span class="metric-num">5+</span>
+      <div class="metric-label">Industries Served</div>
+    </div>
+    <div class="metric-card reveal">
+      <span class="metric-num">6</span>
+      <div class="metric-label">Companies & Projects</div>
+    </div>
+    <div class="metric-card reveal">
+      <span class="metric-num">3</span>
+      <div class="metric-label">Countries Worked In</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-box reveal">
+    <p class="section-label">Let's Connect</p>
+    <h2 class="section-title">Open to QA Lead &amp;<br/>Quality Engineering roles</h2>
+    <p style="color:var(--muted); font-size:0.95rem; line-height:1.7; margin-bottom:1rem;">
+      Based in Paris. Available for opportunities across <strong style="color:var(--text)">France, Europe, UK and USA</strong>.<br/>
+      Let's talk about building quality into your product.
+    </p>
+    <a href="mailto:nishantsachdeva2406@gmail.com" class="btn-primary" style="display:inline-block; margin-top:1rem;">
+      nishantsachdeva2406@gmail.com →
+    </a>
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/nishantsachdeva-47734197" class="contact-link" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn Profile
+      </a>
+      <a href="tel:+33753229300" class="contact-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.0 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        +33 7 53 22 93 00
+      </a>
+      <a href="#" class="contact-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Nanterre, France
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-
-© Nishant Sachdeva
-
+  <span>© 2025 Nishant Sachdeva</span>
+  <span>Built with care · QA Lead Portfolio</span>
 </footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
