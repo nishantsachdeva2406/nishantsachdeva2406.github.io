@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nishant Sachdeva – QA Lead | Automation | AI Testing</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #f8f9fc;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+      --accent: #0ea5a0;
+      --accent2: #2563eb;
+      --text: #0f172a;
+      --muted: #64748b;
+      --gold: #d97706;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.18;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(248, 249, 252, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 6rem 4rem;
+      gap: 4rem;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(14,165,160,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(14,165,160,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridShift 20s linear infinite;
+    }
+    @keyframes gridShift {
+      from { background-position: 0 0; }
+      to { background-position: 60px 60px; }
+    }
+    .hero-text { position: relative; z-index: 2; }
+    .hero-tag {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      background: rgba(14,165,160,0.08);
+      border: 1px solid rgba(14,165,160,0.25);
+      padding: 0.35rem 0.9rem;
+      border-radius: 2rem;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    .hero-name em { font-style: italic; color: var(--accent); }
+    .hero-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--accent2);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+    .hero-desc {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+    .hero-desc strong { color: var(--text); font-weight: 600; }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.7s 0.4s ease both; }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0a0e17;
+      border: none;
+      padding: 0.85rem 2rem;
+      border-radius: 0.4rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(14,165,160,0.3);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 0.85rem 2rem;
+      border-radius: 0.4rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-photo-wrap {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+    .photo-card {
+      position: relative;
+      width: 320px;
+      height: 380px;
+    }
+    .photo-card::before {
+      content: '';
+      position: absolute;
+      top: -12px; left: -12px;
+      width: 100%; height: 100%;
+      border: 2px solid var(--accent);
+      border-radius: 1.2rem;
+      opacity: 0.4;
+    }
+    .photo-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, rgba(0,212,170,0.08), rgba(59,130,246,0.06));
+      z-index: 1;
+      pointer-events: none;
+    }
+    .profile-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 1rem;
+      border: 1px solid var(--border);
+      display: block;
+      position: relative;
+      z-index: 0;
+    }
+    .stat-badge {
+      position: absolute;
+      z-index: 3;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 0.7rem 1.1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    .stat-badge.top-right { top: -16px; right: -24px; }
+    .stat-badge.bottom-left { bottom: -16px; left: -24px; }
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.2rem;
+    }
+
+    section {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 6rem 3rem;
+    }
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 3rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-body {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+    .about-body p + p { margin-top: 1.2rem; }
+    .about-body strong { color: var(--text); font-weight: 600; }
+
+    .about-highlights {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .highlight-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1.1rem 1.4rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .highlight-item:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 20px rgba(14,165,160,0.08);
+    }
+    .hi-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .hi-label {
+      font-size: 0.78rem;
+      font-family: 'DM Mono', monospace;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+    .hi-value { font-size: 0.92rem; color: var(--text); font-weight: 500; line-height: 1.5; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.8rem;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .skill-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 8px 30px rgba(14,165,160,0.1);
+      transform: translateY(-3px);
+    }
+    .skill-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .skill-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+    .skill-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: rgba(14,165,160,0.08);
+      border: 1px solid rgba(14,165,160,0.2);
+      padding: 0.25rem 0.65rem;
+      border-radius: 2rem;
+    }
+
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+    .timeline-item {
+      position: relative;
+      padding-left: 2rem;
+      padding-bottom: 3rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+    }
+    .timeline-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .timeline-role {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+    .timeline-company {
+      font-size: 0.9rem;
+      color: var(--accent2);
+      font-weight: 500;
+      margin-bottom: 0.9rem;
+    }
+    .timeline-desc {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .timeline-desc li {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.65;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+    .timeline-desc li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.75rem;
+      top: 0.05rem;
+    }
+    .timeline-highlight {
+      display: inline-block;
+      margin-top: 0.8rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      background: rgba(14,165,160,0.08);
+      border: 1px solid rgba(14,165,160,0.25);
+      color: var(--accent);
+      padding: 0.3rem 0.75rem;
+      border-radius: 2rem;
+    }
+
+    .ai-project-card {
+      background: linear-gradient(135deg, rgba(14,165,160,0.06), rgba(37,99,235,0.06));
+      border: 1px solid rgba(14,165,160,0.3);
+      border-radius: 1.2rem;
+      padding: 2.5rem;
+      margin-top: 1.5rem;
+    }
+    .ai-project-card .ai-badge {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: rgba(14,165,160,0.15);
+      border: 1px solid rgba(14,165,160,0.35);
+      color: var(--accent);
+      padding: 0.3rem 0.8rem;
+      border-radius: 2rem;
+      margin-bottom: 1rem;
+    }
+    .ai-project-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .ai-project-card p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+    .ai-project-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.2rem;
+    }
+    .ai-project-list li {
+      font-size: 0.86rem;
+      color: var(--muted);
+      padding-left: 1.1rem;
+      position: relative;
+      line-height: 1.6;
+    }
+    .ai-project-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.7rem;
+      top: 0.15rem;
+    }
+
+    .tools-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .tool-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.5rem 1.1rem;
+      border-radius: 2rem;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      letter-spacing: 0.04em;
+    }
+    .tool-pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(14,165,160,0.04);
+    }
+    .tool-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    .tools-category-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      width: 100%;
+      margin-top: 1.5rem;
+      margin-bottom: 0.25rem;
+    }
+    .tools-category-label:first-child { margin-top: 0; }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    .metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .metric-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .metric-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3rem;
+      color: var(--accent);
+      line-height: 1;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .metric-label { font-size: 0.825rem; color: var(--muted); line-height: 1.4; }
+
+    .contact-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1.5rem;
+      padding: 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-box::before {
+      content: '';
+      position: absolute;
+      top: -60px; left: 50%;
+      transform: translateX(-50%);
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(14,165,160,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: var(--accent); }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 3rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer span { font-size: 0.8rem; color: var(--muted); font-family: 'DM Mono', monospace; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+      .hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; gap: 3rem; }
+      .hero-photo-wrap { order: -1; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+      section { padding: 4rem 1.5rem; }
+      .contact-box { padding: 2.5rem 1.5rem; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .metrics-grid { grid-template-columns: 1fr 1fr; }
+      .hero { padding: 6rem 1.5rem 2rem; }
+      .photo-card { width: 280px; height: 340px; }
+      .stat-badge.top-right { right: -10px; }
+      .stat-badge.bottom-left { left: -10px; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">NS · QA Lead</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" style="max-width:100%; margin:0;">
+  <div class="hero-text">
+    <div class="hero-tag">Available · Paris, France</div>
+    <h1 class="hero-name">Nishant<br/><em>Sachdeva</em></h1>
+    <div class="hero-title">QA_LEAD · AUTOMATION · AI_TESTING</div>
+    <p class="hero-desc">
+      <strong>10+ years</strong> driving quality strategy, automation, and release reliability across SaaS, e-commerce, telecom, and insurance. I build frameworks from scratch, embed quality into CI/CD, and validate <strong>AI-driven features</strong> end-to-end.
+    </p>
+    <div class="hero-cta">
+      <a href="mailto:nishantsachdeva2406@gmail.com" class="btn-primary">Get in touch →</a>
+      <a href="cv.pdf" class="btn-outline" download>Download CV</a>
+      <a href="https://linkedin.com/in/nishant-sachdeva-47734197" target="_blank" class="btn-outline">LinkedIn</a>
+    </div>
+  </div>
+  <div class="hero-photo-wrap">
+    <div class="photo-card">
+      <img src="profile.jpg" alt="Nishant Sachdeva" class="profile-photo" />
+      <div class="stat-badge top-right">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Years exp.</div>
+      </div>
+      <div class="stat-badge bottom-left">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Industries</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="reveal">
+    <p class="section-label">Who I am</p>
+    <h2 class="section-title">Quality, by design.<br/>Reliability, at scale.</h2>
+  </div>
+  <div class="about-grid reveal">
+    <div class="about-body">
+      <p>I'm a QA Lead based in <strong>Paris, France</strong> with over a decade of experience embedding quality into the heart of engineering teams. From scrappy startups to large-scale platforms, I define strategy, build automation frameworks, and make sure releases go out with confidence.</p>
+      <p>At <strong>Qantev</strong> I lead QA across multiple squads for an insurance SaaS platform — building Cypress automation from scratch, validating <strong>AI-driven features</strong> (document classification, data extraction, medical code search), and working directly with leadership to improve release stability.</p>
+      <p>Previously at <strong>ManoMano</strong>, I delivered end-to-end automation for a high-scale e-commerce platform, implemented contract testing with PACT, and drove quality maturity across cross-functional programs.</p>
+      <p>I'm fluent in <strong>English</strong>, conversational in <strong>French (DELF B1)</strong>, and a native <strong>Hindi</strong> speaker — comfortable working in multilingual, international teams.</p>
+    </div>
+    <div class="about-highlights">
+      <div class="highlight-item">
+        <div class="hi-icon">📍</div>
+        <div>
+          <div class="hi-label">Location</div>
+          <div class="hi-value">Paris, France · Open to hybrid & remote</div>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <div class="hi-icon">🌍</div>
+        <div>
+          <div class="hi-label">Languages</div>
+          <div class="hi-value">English (Fluent) · French (DELF B1) · Hindi (Native)</div>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <div class="hi-icon">🎓</div>
+        <div>
+          <div class="hi-label">Education</div>
+          <div class="hi-value">MCA · Guru Gobind Singh Indraprastha University, 2014</div>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <div class="hi-icon">🤖</div>
+        <div>
+          <div class="hi-label">AI Testing</div>
+          <div class="hi-value">LLM validation · Prompt testing · Hallucination detection · Output consistency</div>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <div class="hi-icon">✉️</div>
+        <div>
+          <div class="hi-label">Email</div>
+          <div class="hi-value">nishantsachdeva2406@gmail.com</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="reveal">
+    <p class="section-label">Core Expertise</p>
+    <h2 class="section-title">What I bring<br/>to your team</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-icon">🎯</div>
+      <h3>QA Strategy & Governance</h3>
+      <p>Defining quality KPIs, test processes, and governance frameworks. Aligning QA strategy with business goals and release reliability across multiple squads.</p>
+      <div class="tags">
+        <span class="tag">Strategy</span>
+        <span class="tag">Metrics</span>
+        <span class="tag">Governance</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">⚡</div>
+      <h3>Test Automation</h3>
+      <p>End-to-end automation with Cypress, Selenium, Playwright, and CodeceptJS. Built frameworks from scratch with CI/CD integration and 60–70% regression coverage.</p>
+      <div class="tags">
+        <span class="tag">Cypress</span>
+        <span class="tag">Selenium</span>
+        <span class="tag">Playwright</span>
+        <span class="tag">CodeceptJS</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🤖</div>
+      <h3>AI Feature Testing</h3>
+      <p>Validating AI-driven features end-to-end: document classification, data extraction, medical code search. LLM output validation, prompt testing, and edge case identification.</p>
+      <div class="tags">
+        <span class="tag">LLM Validation</span>
+        <span class="tag">Prompt Testing</span>
+        <span class="tag">AI Workflows</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🔌</div>
+      <h3>API & Contract Testing</h3>
+      <p>Deep API validation with Postman/Newman, Bruno, and Pact for consumer-driven contract testing. Microservices integration testing across distributed systems.</p>
+      <div class="tags">
+        <span class="tag">Postman</span>
+        <span class="tag">Bruno</span>
+        <span class="tag">Pact</span>
+        <span class="tag">Newman</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🔄</div>
+      <h3>CI/CD Integration</h3>
+      <p>Embedding automated quality gates into delivery pipelines. Fast feedback loops, quality criteria enforcement, and confident high-frequency releases.</p>
+      <div class="tags">
+        <span class="tag">CI/CD</span>
+        <span class="tag">Pipelines</span>
+        <span class="tag">Quality Gates</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">↙️</div>
+      <h3>Shift-Left & Built-In Quality</h3>
+      <p>Moving quality upstream through BDD, Gherkin, acceptance criteria coaching, and close collaboration with product and dev teams from day one.</p>
+      <div class="tags">
+        <span class="tag">BDD</span>
+        <span class="tag">Shift-Left</span>
+        <span class="tag">Risk-Based Testing</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🤝</div>
+      <h3>Team Leadership & Coaching</h3>
+      <p>Mentoring QA engineers, driving quality-first culture, and bridging engineering, product, and senior stakeholder expectations in agile organisations.</p>
+      <div class="tags">
+        <span class="tag">Leadership</span>
+        <span class="tag">Mentoring</span>
+        <span class="tag">Agile / Scrum</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🏥</div>
+      <h3>Domain Expertise</h3>
+      <p>Deep understanding of insurance, healthcare SaaS, e-commerce, telecom, airline, and gaming platforms — business-focused testing that goes beyond technical coverage.</p>
+      <div class="tags">
+        <span class="tag">Insurance</span>
+        <span class="tag">HealthTech</span>
+        <span class="tag">E-Commerce</span>
+        <span class="tag">SaaS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="reveal">
+    <p class="section-label">Career Journey</p>
+    <h2 class="section-title">10+ years of<br/>shipping quality</h2>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-meta">Sep 2024 – Present · Paris, France</div>
+      <div class="timeline-role">QA Lead</div>
+      <div class="timeline-company">Qantev · Insurance & Healthcare SaaS</div>
+      <ul class="timeline-desc">
+        <li>Defined and executed QA strategy across multiple squads, driving quality and release excellence.</li>
+        <li>Built Cypress automation framework (UI + API) from scratch — 60–70% regression coverage, 40% reduction in manual effort via CI/CD.</li>
+        <li>Validated AI-driven features (document classification, data extraction, medical code search) via UI and API, ensuring accuracy and data integrity.</li>
+        <li>Performed end-to-end testing of AI workflows, identifying edge cases and improving reliability of data-driven outputs.</li>
+        <li>Established quality gates, metrics, and release criteria; reduced production defects and improved release stability.</li>
+        <li>Collaborated with leadership (including CEO), led shift-left practices, and mentored teams to strengthen quality ownership.</li>
+      </ul>
+      <span class="timeline-highlight">Cypress · AI Testing · CI/CD · Insurance SaaS</span>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-meta">Apr 2020 – Mar 2024 · Paris, France</div>
+      <div class="timeline-role">QA Engineer</div>
+      <div class="timeline-company">ManoMano · Large-scale E-Commerce</div>
+      <ul class="timeline-desc">
+        <li>Delivered QA for high-scale e-commerce platform covering critical user journeys: search, checkout, payments, and product pages.</li>
+        <li>Built and maintained automation suites (CodeceptJS + API testing) — improved regression reliability and reduced manual testing cycles.</li>
+        <li>Implemented API testing strategy using Postman/Newman for backend validation.</li>
+        <li>Collaborated across multiple teams in programme-level initiatives impacting customer experience.</li>
+        <li>Validated complex workflows including order lifecycle, payment systems, and customer journeys.</li>
+      </ul>
+      <span class="timeline-highlight">CodeceptJS · Postman · Pact · E-Commerce</span>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-meta">Jun 2019 – Jan 2020 · Gurgaon, India</div>
+      <div class="timeline-role">Senior Software Engineer (QA)</div>
+      <div class="timeline-company">Altran (Aricent Technologies) · Telecom — Samsung</div>
+      <ul class="timeline-desc">
+        <li>Managed QA team and coordinated testing activities across delivery teams for Samsung telecom admin platforms.</li>
+        <li>Built Selenium (Java) regression automation; managed full test lifecycle.</li>
+        <li>Collaborated directly with Samsung client stakeholders to ensure quality delivery aligned with business requirements.</li>
+      </ul>
+      <span class="timeline-highlight">Selenium · Team Lead · Telecom</span>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-meta">Feb 2018 – Jun 2019 · Gurgaon, India</div>
+      <div class="timeline-role">Test Analyst</div>
+      <div class="timeline-company">Sun Life Financial · Insurance</div>
+      <ul class="timeline-desc">
+        <li>Built automation framework from scratch using Selenium (Java) and Postman/Newman — improved regression coverage and test reliability.</li>
+        <li>Functional, integration, and regression testing for insurance and financial systems in agile team.</li>
+        <li>Developed deep domain knowledge in insurance platforms and financial services workflows.</li>
+      </ul>
+      <span class="timeline-highlight">Selenium · Postman · Insurance Domain</span>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-meta">Nov 2014 – Jan 2018 · Greater Noida, India</div>
+      <div class="timeline-role">Senior Software Test Engineer</div>
+      <div class="timeline-company">NIIT Technologies · Airline & Gaming (SITA · Caesars)</div>
+      <ul class="timeline-desc">
+        <li>QA for SITA (airline industry) and Caesars Entertainment (gaming) enterprise web platforms.</li>
+        <li>Functional, regression, and API testing; cross-browser validation and defect lifecycle management using HP QC / ALM.</li>
+        <li>Supported release validation and defect triage across multiple environments.</li>
+      </ul>
+      <span class="timeline-highlight">ALM / HP QC · Airline · Gaming</span>
+    </div>
+  </div>
+
+  <div class="ai-project-card reveal">
+    <div class="ai-badge">🤖 Self-Directed Project</div>
+    <h3>AI Testing Exploration</h3>
+    <p>Alongside day-to-day QA work, I've been actively building skills in LLM and AI feature validation — an area I now apply directly in my current role at Qantev.</p>
+    <ul class="ai-project-list">
+      <li>Designed test scenarios for validating LLM outputs: accuracy, consistency, and edge cases.</li>
+      <li>Created prompt-based test cases including negative and boundary testing.</li>
+      <li>Evaluated AI responses using structured validation criteria.</li>
+      <li>Explored automation of AI test cases using APIs and Python-based approaches.</li>
+      <li>Studied hallucination detection, bias validation, and output consistency techniques.</li>
+    </ul>
+    <div class="tags">
+      <span class="tag">LLM Validation</span>
+      <span class="tag">Prompt Testing</span>
+      <span class="tag">Hallucination Detection</span>
+      <span class="tag">Python</span>
+      <span class="tag">API Automation</span>
+    </div>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="reveal">
+    <p class="section-label">Tech Stack</p>
+    <h2 class="section-title">Tools &amp; Technologies</h2>
+  </div>
+  <div class="tools-grid reveal">
+    <span class="tools-category-label">Automation</span>
+    <span class="tool-pill"><span class="tool-dot"></span>Cypress</span>
+    <span class="tool-pill"><span class="tool-dot"></span>Selenium (Java)</span>
+    <span class="tool-pill"><span class="tool-dot"></span>Playwright</span>
+    <span class="tool-pill"><span class="tool-dot"></span>CodeceptJS</span>
+
+    <span class="tools-category-label">API & Contract Testing</span>
+    <span class="tool-pill"><span class="tool-dot"></span>Postman / Newman</span>
+    <span class="tool-pill"><span class="tool-dot"></span>Bruno</span>
+    <span class="tool-pill"><span class="tool-dot"></span>Pact (Contract Testing)</span>
+    <span class="tool-pill"><span class="tool-dot"></span>Microservices Testing</span>
+
+    <span class="tools-category-label">AI & Performance</span>
+    <span class="tool-pill"><span class="tool-dot"></span>LLM Validation</span>
+    <span class="tool-pill"><span class="tool-dot"></span>Prompt Testing</span>
+    <span class="tool-pill"><span class="tool-dot"></span>k6 (Performance)</span>
+
+    <span class="tools-category-label">CI/CD & DevOps</span>
+    <span class="tool-pill"><span class="tool-dot"></span>CI/CD Pipelines</span>
+    <span class="tool-pill"><span class="tool-dot"></span>GitHub Actions</span>
+    <span class="tool-pill"><span class="tool-dot"></span>Quality Gates</span>
+
+    <span class="tools-category-label">Test Management</span>
+    <span class="tool-pill"><span class="tool-dot"></span>Jira</span>
+    <span class="tool-pill"><span class="tool-dot"></span>Xray</span>
+    <span class="tool-pill"><span class="tool-dot"></span>ALM / HP QC</span>
+
+    <span class="tools-category-label">Databases</span>
+    <span class="tool-pill"><span class="tool-dot"></span>PostgreSQL</span>
+    <span class="tool-pill"><span class="tool-dot"></span>SQL</span>
+    <span class="tool-pill"><span class="tool-dot"></span>DBeaver</span>
+    <span class="tool-pill"><span class="tool-dot"></span>phpMyAdmin</span>
+
+    <span class="tools-category-label">Methodologies & Languages</span>
+    <span class="tool-pill"><span class="tool-dot"></span>Agile / Scrum</span>
+    <span class="tool-pill"><span class="tool-dot"></span>BDD / Gherkin</span>
+    <span class="tool-pill"><span class="tool-dot"></span>Risk-Based Testing</span>
+    <span class="tool-pill"><span class="tool-dot"></span>JavaScript</span>
+    <span class="tool-pill"><span class="tool-dot"></span>Java</span>
+    <span class="tool-pill"><span class="tool-dot"></span>Python</span>
+  </div>
+</section>
+
+<section id="metrics">
+  <div class="reveal">
+    <p class="section-label">By the numbers</p>
+    <h2 class="section-title">Impact at a glance</h2>
+  </div>
+  <div class="metrics-grid">
+    <div class="metric-card reveal">
+      <span class="metric-num">10+</span>
+      <div class="metric-label">Years in Quality Engineering</div>
+    </div>
+    <div class="metric-card reveal">
+      <span class="metric-num">60–70%</span>
+      <div class="metric-label">Regression Coverage at Qantev</div>
+    </div>
+    <div class="metric-card reveal">
+      <span class="metric-num">40%</span>
+      <div class="metric-label">Manual Effort Reduction via CI/CD</div>
+    </div>
+    <div class="metric-card reveal">
+      <span class="metric-num">5+</span>
+      <div class="metric-label">Industries: SaaS · E-Commerce · Telecom · Insurance · Gaming</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-box reveal">
+    <p class="section-label">Let's Connect</p>
+    <h2 class="section-title">Open to QA Lead &amp;<br/>Quality Engineering roles</h2>
+    <p style="color:var(--muted); font-size:0.95rem; line-height:1.7; margin-bottom:1rem;">
+      Based in Paris. Available for opportunities across <strong style="color:var(--text)">France &amp; Europe</strong>.<br/>
+      Let's talk about building quality into your product.
+    </p>
+    <div class="hero-cta" style="justify-content:center; margin-top:1rem;">
+      <a href="mailto:nishantsachdeva2406@gmail.com" class="btn-primary">Email me →</a>
+      <a href="cv.pdf" class="btn-outline" download>Download CV</a>
+    </div>
+    <div class="contact-links">
+      <a href="https://linkedin.com/in/nishant-sachdeva-47734197" class="contact-link" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        linkedin.com/in/nishant-sachdeva-47734197
+      </a>
+      <a href="https://nishantsachdeva2406.github.io" class="contact-link" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        nishantsachdeva2406.github.io
+      </a>
+      <a href="tel:+33753229300" class="contact-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.0 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        +33 7 53 22 93 00
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Nishant Sachdeva</span>
+  <span>QA Lead · Paris, France</span>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
